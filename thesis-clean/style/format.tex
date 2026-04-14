@@ -1,3 +1,8 @@
+% ==============================================
+% About file: Format and style
+% Description: list of packages, colors \& Style
+% ==============================================
+
 \usepackage{amsmath,amssymb}             % AMS Math
 \usepackage[T1]{fontenc}
 \usepackage{rotating,booktabs}
@@ -7,31 +12,52 @@
 \usepackage{paralist}
 \usepackage{ulem}
 \usepackage{etoolbox}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage{hyperref}
+
 \usepackage[left=1.0in,right=1.0in,top=1.0in,bottom=1.0in,includefoot,includehead,headheight=13.6pt]{geometry}
 \renewcommand{\baselinestretch}{1.05}
 
-% Table of contents for each chapter
-\usepackage[nottoc, notlof, notlot]{tocbibind}
-\usepackage{minitoc}
+\usepackage{titlesec}
+% \titlespacing*{\chapter}{0pt}{-80pt}{10pt}
 
-% % Use \minitoc where to put a table of contents
-\setcounter{minitocdepth}{2}
-\mtcindent=15pt
+\renewcommand{\appendixname}{Apéndice}
+
+\usepackage{colortbl}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{multirow}
+%\usepackage{slashbox}
+
+\usepackage{aecompl}
+\usepackage{adjustbox}
+
+% % Gantt Diagram
+\usepackage{pgfgantt}
+
+% % Nomenclatura
+\usepackage{nomencl}
+\newcommand{\nomunit}[1]{\hfill[#1]}
+% \newcommand{\nomeqref}[1]{\hfill( #1 )}
+% \newcommand{\nompageref}[1]{\hfill p.~#1}
 
 % Links in pdf
 \usepackage{color}
 \definecolor{linkcol}{rgb}{0,0,0.4}
 \definecolor{citecol}{rgb}{0.5,0,0}
 
-\usepackage{aecompl}
-\usepackage{adjustbox}
-
 % My pdf code
 \usepackage{ifpdf}
 
-%  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{pgfgantt}
+% \let\showhyphens\relax
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \definecolor{darkgreen}{RGB}{0,176,80}
 \definecolor{lightgreen}{RGB}{169,208,142}
@@ -62,23 +88,16 @@
 % % Change this to change the some Meta Data in the *.pdf file
 % % See hyperref documentation for information on those parameters
 
-% \hypersetup{
-%     bookmarksopen=true,
-%     % pdftitle="\titulo",
-%     pdftitle = "Msc Thesis FG",
-%     pdfauthor = "Luis Felipe Guevara Gómez",
-%     pdfsubject = "Trabajo de Grado | Ingeniería Electrónica | Javeriana Cali", %subject of the document
-%     %pdftoolbar=false, % toolbar hidden
-%     pdfmenubar=true, %menubar shown
-%     pdfhighlight=/O, %effect of clicking on a link
-%     colorlinks=true, % colores en los enlaces hipertexto
-%     pdfpagemode=None, % sin modo de página específico
-%     pdfpagelayout=SinglePage, % apertura en una sola página
-%     pdffitwindow=true, % las páginas se ajustan completamente a la ventana
-%     linkcolor=linkcol, % color de los enlaces internos
-%     citecolor=citecol, % color de los enlaces de citas
-%     urlcolor=linkcol % color de los enlaces URL
-% }
+\hypersetup{
+    colorlinks=true,
+    citecolor=citecol,
+    linkcolor=linkcol,
+    urlcolor=linkcol,
+    bookmarksopen=true,
+    pdfauthor={Luis Felipe Guevara Gómez},
+    pdftitle={Msc Thesis FG},
+    pdfsubject={Trabajo de Grado | Ingeniería Electrónica | Javeriana Cali}
+}
 
 % definitions.
 % -------------------
@@ -86,100 +105,89 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{2}
 
-% Some useful commands and shortcut for maths:  partial derivative and stuff
 
-\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
-\def\abs{\operatorname{abs}}
-\def\argmax{\operatornamewithlimits{arg\,max}}
-\def\argmin{\operatornamewithlimits{arg\,min}}
-\def\diag{\operatorname{Diag}}
-\newcommand{\eqRef}[1]{(\ref{#1})}
-
-\usepackage{rotating}                    % Sideways of figures & tables
-\usepackage{natbib}                  % Put References at the end of each chapter
+\usepackage{rotating}  % Sideways of figures & tables
+% \usepackage{natbib}  % Put References at the end of each chapter
 % % Do -NOT- put 'sectionbib' option here.
 % % Sectionbib option in 'natbib' will do.
 
-% % \usepackage{txfonts}                     % Public Times New Roman text & math font
+% % \usepackage{txfonts}    % Public Times New Roman text & math font
 
-% %%% Fancy Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% =========================
+% FANCY HEADER CLEAN
+% =========================
 % % Fancy Header Style Options
-\usepackage{fancyhdr}                    % Fancy Header and Footer
-\pagestyle{fancy}                       % Sets fancy header and footer
-\fancyfoot{}                            % Delete current footer settings
+\usepackage{fancyhdr}       % Fancy Header and Footer
+\setlength{\headheight}{30pt}
+\pagestyle{fancy}           % Sets fancy header and footer
+\fancyhf{}
 
-% %\renewcommand{\chaptermark}[1]{         % Lower Case Chapter marker style
-% %  \markboth{\chaptername\ \thechapter.\ #1}}{}} %
-% %\renewcommand{\sectionmark}[1]{         % Lower case Section marker style
-% %  \markright{\thesection.\ #1}}         %
-% % Page number (boldface) in left on even
-\fancyhead[LE,RO]{\bfseries\thepage}
-% %%%%%%%%%%%%% Pages and right on odd pages
-% % Chapter in the right on even pages
-% % Section in the left on odd pages
-\fancyhead[RE]{\bfseries\nouppercase{\leftmark}}
-\fancyhead[LO]{\bfseries\nouppercase{\rightmark}}
+% =========================
+% PÁGINAS PARES (even)
+% =========================
+\fancyhead[LE]{\bfseries\thepage} % número izquierda
+\fancyhead[RE]{\bfseries\nouppercase{\leftmark}} % capítulo derecha
 
-\let\headruleORIG\headrule
-\renewcommand{\headrule}{\color{black} \headruleORIG}
-\renewcommand{\headrulewidth}{1.0pt}
-\usepackage{colortbl}
-\arrayrulecolor{black}
+% =========================
+% PÁGINAS IMPARES (odd)
+% =========================
+\fancyhead[LO]{\bfseries\nouppercase{\rightmark}} % sección izquierda
+\fancyhead[RO]{\bfseries\thepage} % número derecha
+
+\renewcommand{\chaptermark}[1]{%
+  \markboth{Capítulo \thechapter.\ #1}{}}
+
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection.\ #1}}
+
+% \let\headruleORIG\headrule
+% \renewcommand{\headrule}{\color{black} \headruleORIG}
+
 \fancypagestyle{plain}{
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
 }
-% \fancypagestyle{plain}{
-%   \fancyhead{}
-%   \fancyfoot{}
-%   \renewcommand{\headrulewidth}{0pt}
-% }
 
-\usepackage{algorithm}
-\usepackage[noend]{algorithmic}
 
-% %%% Clear Header %%
-% % Clear Header Style on the Last Empty Odd pages
+\renewcommand{\headrulewidth}{1.0pt}
+
+\arrayrulecolor{black}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+}
+% %%% Fancy Header ==========================
+
+
 \makeatletter
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
-  \hbox{}%
-  \thispagestyle{empty}%              % Empty header styles
-  \newpage%
-  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\def\cleardoublepage{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \hbox{}
+      \thispagestyle{empty} % ← CLAVE
+      \newpage
+    \fi
+  \fi
+}
 \makeatother
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % Prints your review date and 'Draft Version' (From Josullvn, CS, CMU)
-% \newcommand{\reviewtimetoday}[2]{\special{!userdict begin
-%     /bop-hook{gsave 20 710 translate 45 rotate 0.8 setgray
-%       /Times-Roman findfont 12 scalefont setfont 0 0   moveto (#1) show
-%       0 -12 moveto (#2) show grestore}def end}}
-% % You can turn on or off this option.
-% % \reviewtimetoday{\today}{Draft Version}
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{maxime}[1]
 {
-\vspace*{0cm}
-\hfill
-\begin{minipage}{0.5\textwidth}%
-%\rule[0.5ex]{\textwidth}{0.1mm}\\%
-\hrulefill $\:$ {\bf #1}\\
-%\vspace*{-0.25cm}
-\it
+    \vspace*{0cm}
+    \hfill
+    \begin{minipage}{0.5\textwidth}%
+    %\rule[0.5ex]{\textwidth}{0.1mm}\\%
+    \hrulefill $\:$ {\bf #1}\\
+    %\vspace*{-0.25cm}
+    \it
 }%
 {%
-
-\hrulefill
-\vspace*{0.5cm}%
-\end{minipage}
+    \hrulefill
+    \vspace*{0.5cm}%
+    \end{minipage}
 }
-
-\let\minitocORIG\minitoc
-\renewcommand{\minitoc}{\minitocORIG \vspace{1.5em}}
-
-\usepackage{multirow}
-%\usepackage{slashbox}
 
 \newenvironment{bulletList}%
 { \begin{list}%
@@ -189,10 +197,44 @@
 	 \setlength{\itemsep}{\parsep}}}%
 { \end{list} }
 
+% Some useful commands and shortcut for maths:  partial derivative and stuff
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\def\abs{\operatorname{abs}}
+\def\argmax{\operatornamewithlimits{arg\,max}}
+\def\argmin{\operatornamewithlimits{arg\,min}}
+\def\diag{\operatorname{Diag}}
+\newcommand{\eqRef}[1]{(\ref{#1})}
 \renewcommand{\epsilon}{\varepsilon}
 
 % centered page environment
-
 \newenvironment{vcenterpage}
-{\newpage\vspace*{\fill}\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
+{
+    \newpage\vspace*{\fill} \fancyhf{} \renewcommand{\headrulewidth}{0pt}
+}
 {\vspace*{\fill}\par\pagebreak}
+
+\input{otros/contactDetails}
+
+\usepackage{xcolor}
+% \definecolor{linkred}{RGB}{120,0,40}
+
+
+
+% % =========================
+% % SPACING + FLOAT CONTROL
+% % =========================
+% \setlength{\lineskip}{1pt}
+% \setlength{\normallineskip}{1pt}
+% \setlength{\parskip}{0pt plus 1pt}
+
+% \setcounter{topnumber}{2}
+% \renewcommand{\topfraction}{0.7}
+% \setcounter{bottomnumber}{1}
+% \renewcommand{\bottomfraction}{0.3}
+% \setcounter{totalnumber}{3}
+% \renewcommand{\textfraction}{0.2}
+% \renewcommand{\floatpagefraction}{0.5}
+
+% \setcounter{dbltopnumber}{2}
+% \renewcommand{\dbltopfraction}{0.7}
+% \renewcommand{\dblfloatpagefraction}{0.5}
